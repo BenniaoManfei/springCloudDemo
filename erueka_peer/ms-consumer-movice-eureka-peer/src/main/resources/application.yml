@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: ms-consumer-movice-eureka-peer #使用小写
+
+logging:
+  level: 
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    #com.daniel.cloud: debug
+    com.daniel.cloud.web.controller.UserFeignClient: debug
+    
+    
+server:
+  port: 7901
+  
+eureka:
+  client:
+    
+    healthcheck: 
+      enabled: true
+    service-url: 
+      defaultZone: http://peer1.eureka.com:7940/eureka/,http://peer2.eureka.com:7901/eureka/
+      #defaultZone: http://eureka:eureka123456@peer1.eureka.com:8761/eureka,http://eureka:eureka123456@peer2.eureka.com:8761/eureka
+  instance: 
+    hostname: peer2.eureka.com
+    prefer-ip-address: true 
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+# 用户微服务的策略
+ms-provider-user-feign: 
+  ribbon: 
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

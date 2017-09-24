@@ -1,0 +1,4 @@
+com\daniel\cloud\web\controllers\UserController.class
+com\daniel\cloud\model\entity\User.class
+com\daniel\cloud\repository\UserRepository.class
+com\daniel\cloud\MicroserviceSimpleProviderUserApplication.class

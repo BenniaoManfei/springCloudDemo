@@ -1,0 +1,48 @@
+
+
+server:
+  port: 7940
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql 
+    data: classpath:data.sql
+  application:
+    name: ms-provider-user-hystrix #使用小写
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.daniel.cloud: debug
+
+eureka:
+  client:
+    healthcheck: 
+      enabled: true
+    service-url: 
+      #defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: http://eureka:eureka123456@127.0.0.1:8761/eureka
+  instance: 
+    prefer-ip-address: true 
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}

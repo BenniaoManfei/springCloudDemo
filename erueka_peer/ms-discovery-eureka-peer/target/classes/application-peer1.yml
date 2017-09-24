@@ -1,0 +1,30 @@
+
+spring:
+  application:
+    name: ms-discovery-eureka-peer1
+
+logging:
+  level:
+    root: info
+    com.daniel.cloud: debug
+    
+server:
+  port: 8761 
+
+security:
+  basic:
+    enabled: true
+  user: 
+    name: eureka
+    password: eureka123456
+
+eureka:
+  instance: 
+    hostname: peer1.eureka.com
+  client:
+    healthcheck: 
+      enabled: true 
+    register-with-eureka: false #只当做eureka server
+    fetch-registry: false #只当做eureka server
+    service-url: 
+      defaultZone: http://eureka:eureka123456@peer2.eureka.com:8762/eureka/

@@ -1,0 +1,49 @@
+
+
+server:
+  port: 7940
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql 
+    data: classpath:data.sql
+  application:
+    name: ms-provider-user-eureka-peer #使用小写
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.daniel.cloud: debug
+
+eureka:
+  client:
+    healthcheck: 
+      enabled: true
+    service-url: 
+      defaultZone: http://peer1.eureka.com:7940/eureka/,http://peer2.eureka.com:7901/eureka/
+      #defaultZone: http://eureka:eureka123456@peer1.eureka.com:8761/eureka,http://eureka:eureka123456@peer2.eureka.com:8761/eureka
+  instance: 
+    hostname: peer1.eureka.com
+    prefer-ip-address: true 
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}

@@ -1,0 +1,12 @@
+
+logging:
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.daniel.cloud: debug
+    
+    
+server:
+  port: 7901

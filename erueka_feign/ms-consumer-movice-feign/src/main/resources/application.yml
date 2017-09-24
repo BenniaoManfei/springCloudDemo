@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: ms-consumer-movice-feign #使用小写
+
+logging:
+  level: 
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    #com.daniel.cloud: debug
+    com.daniel.cloud.web.controller.UserFeignClient: debug
+    
+    
+server:
+  port: 7901
+  
+eureka:
+  client:
+    healthcheck: 
+      enabled: true
+    service-url: 
+      #defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: http://eureka:eureka123456@127.0.0.1:8761/eureka
+  instance: 
+    prefer-ip-address: true 
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+# 用户微服务的策略
+ms-provider-user-feign: 
+  ribbon: 
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
