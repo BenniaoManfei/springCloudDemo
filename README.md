@@ -17,3 +17,6 @@
 #### 3. hystrix(断路器) ####
 
 1. hystrix的入门介绍
+2. hystrix-feign: FeignClient使用Hystrix熔断机制
+
+
