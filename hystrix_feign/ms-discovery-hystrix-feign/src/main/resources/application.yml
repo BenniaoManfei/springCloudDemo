@@ -1,0 +1,28 @@
+
+spring:
+  application:
+    name: ms-discovery-hystrix-feign #使用小写
+
+logging:
+  level:
+    root: info
+    com.daniel.cloud: debug
+    
+server:
+  port: 8761 
+
+security:
+  basic:
+    enabled: true
+  user: 
+    name: eureka
+    password: eureka123456
+
+eureka:
+  client:
+    healthcheck: 
+      enabled: true 
+    register-with-eureka: false #只当做eureka server
+    fetch-registry: false #只当做eureka server
+    service-url: 
+      defaultZone: http://eureka:eureka123456@127.0.0.1:8761/eureka
